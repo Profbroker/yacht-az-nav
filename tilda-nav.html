@@ -1,11 +1,14 @@
 <!--
   tilda-nav.html — главное меню yacht.az
 
+  ВЕРСИЯ: 1.0.7 (2026-05-13)
+    - Прозрачность на baku-club-regatta изменена с 95% на 80%
+      (alpha 0.05 → 0.2). Класс is-transparent-95 → is-transparent-80,
+      TRANSPARENT_95 → TRANSPARENT_80.
+
   ВЕРСИЯ: 1.0.6 (2026-05-13)
-    - Фикс терминологии: "прозрачность 95%" означает что меню видно
-      только на 5% (alpha 0.05), а не наоборот. Класс переименован
-      .is-tinted-95 → .is-transparent-95, переменная TINT_95 →
-      TRANSPARENT_95, alpha 0.95 → 0.05.
+    - Фикс терминологии: "прозрачность N%" означает что меню видно
+      только на (100−N)% (alpha = (100−N)/100), а не наоборот.
 
   ВЕРСИЯ: 1.0.4 (2026-05-12)
     - Точечный тинт по path: TRANSPARENT_95 — список slug'ов с
@@ -238,13 +241,13 @@
     border-bottom-color: rgba(255,255,255,0.08);
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
   }
-  /* Точечный тинт для отдельных страниц: 95% ПРОЗРАЧНОЕ navy сверху
-     (alpha 0.05) — едва заметная подложка, hero почти полностью виден.
-     При скролле .is-solid побеждает (через :not). Список страниц
-     ставится из JS по path. */
-  #yz-nav.is-transparent-95:not(.is-solid) {
-    background: rgba(30, 58, 92, 0.05);
-    border-bottom-color: rgba(255,255,255,0.04);
+  /* Точечный тинт для отдельных страниц: 80% ПРОЗРАЧНОЕ navy сверху
+     (alpha 0.2) — лёгкая подложка, hero хорошо виден, но меню не
+     теряется. При скролле .is-solid побеждает (через :not). Список
+     страниц ставится из JS по path. */
+  #yz-nav.is-transparent-80:not(.is-solid) {
+    background: rgba(30, 58, 92, 0.2);
+    border-bottom-color: rgba(255,255,255,0.05);
   }
   #yz-nav, #yz-nav *, #yz-nav *::before, #yz-nav *::after { box-sizing: border-box; }
   #yz-nav a, #yz-nav button {
@@ -711,18 +714,18 @@
      На ВСЕХ страницах меню изначально прозрачное (поверх hero-фото
      с белым текстом). При скролле >80px — становится navy.
 
-     Точечные исключения по path: страницы из TRANSPARENT_95 стартуют
-     с лёгкой подложкой 95% прозрачности (alpha 0.05) — едва заметный
-     намёк на navy, hero почти полностью виден. При скролле всё равно
-     становятся полностью solid. */
-  var TRANSPARENT_95 = [
+     Точечные исключения по path: страницы из TRANSPARENT_80 стартуют
+     с подложкой 80% прозрачности (alpha 0.2) — hero хорошо виден,
+     меню не теряется. При скролле всё равно становятся полностью
+     solid. */
+  var TRANSPARENT_80 = [
     'baku-club-regatta'    /* «Клубные регаты» */
   ];
 
   var nav = document.getElementById('yz-nav');
   if (nav) {
-    var tintMatch = TRANSPARENT_95.some(function (slug) { return path.indexOf(slug) !== -1; });
-    if (tintMatch) nav.classList.add('is-transparent-95');
+    var tintMatch = TRANSPARENT_80.some(function (slug) { return path.indexOf(slug) !== -1; });
+    if (tintMatch) nav.classList.add('is-transparent-80');
 
     var onScroll = function () {
       if (window.scrollY > 80) {
