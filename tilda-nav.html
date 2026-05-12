@@ -1,6 +1,12 @@
 <!--
   tilda-nav.html — главное меню yacht.az
 
+  ВЕРСИЯ: 1.0.2 (2026-05-12)
+    - Прозрачное меню теперь на ВСЕХ страницах (раньше только на
+      главной). При скролле >80px — становится navy. Spacer убран.
+    - Шрифты desktop +1pt: главное 14px, подменю 13px.
+    - Бургер в мобилке прижат к правому краю (grid 1fr auto).
+
   ВЕРСИЯ: 1.0.1 (2026-05-12)
     - «Аренда яхт» как отдельный пункт меню убрана; снова внутри
       «Яхтинг в Баку» (цены, аренда яхт, мастер-класс, клубные регаты)
@@ -185,9 +191,8 @@
 
 </nav>
 
-<!-- Spacer для не-главных страниц: компенсирует fixed-навбар.
-     На главных он скрыт (меню прозрачное, контент идёт прямо под ним). -->
-<div id="yz-nav-spacer" style="height: 96px; display: none;"></div>
+<!-- Spacer удалён в 1.0.2 — меню теперь прозрачное на ВСЕХ страницах,
+     контент идёт прямо под него (как на главной до этого). -->
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
@@ -682,30 +687,21 @@
   }
 
   /* ─── Transparent navbar logic.
-     На главных страницах (/, /ru/, /en/, /az/) меню изначально
-     прозрачное (поверх hero-фото с белым текстом). При скролле
-     >80px — становится navy.
-     На внутренних — сразу navy (is-solid). */
+     На ВСЕХ страницах меню изначально прозрачное (поверх hero-фото
+     с белым текстом). При скролле >80px — становится navy.
+     Подразумевается что у каждой страницы yacht.az есть тёмный hero
+     в верхней части — иначе белый текст не будет читабелен. */
   var nav = document.getElementById('yz-nav');
   if (nav) {
-    var isHomepage = /^\/(?:(ru|en|az)\/?)?$/.test(path);
-    var spacer = document.getElementById('yz-nav-spacer');
-    if (!isHomepage) {
-      nav.classList.add('is-solid');
-      /* На внутренних страницах показываем spacer чтобы контент
-         не уходил под fixed-меню */
-      if (spacer) spacer.style.display = 'block';
-    } else {
-      var onScroll = function () {
-        if (window.scrollY > 80) {
-          nav.classList.add('is-solid');
-        } else {
-          nav.classList.remove('is-solid');
-        }
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
+    var onScroll = function () {
+      if (window.scrollY > 80) {
+        nav.classList.add('is-solid');
+      } else {
+        nav.classList.remove('is-solid');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 })();
 </script>
