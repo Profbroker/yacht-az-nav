@@ -1,6 +1,13 @@
 <!--
   tilda-nav.html — главное меню yacht.az
 
+  ВЕРСИЯ: 1.0.4 (2026-05-12)
+    - Точечный 80% тинт по path: TINT_80 — список slug'ов, на которых
+      меню стартует с rgba(30,58,92,0.8) вместо полной прозрачности.
+      Текущий список: baku-club-regatta.
+    - При скролле тинтованные страницы всё равно перекрашиваются в
+      полный navy (через :not(.is-solid)).
+
   ВЕРСИЯ: 1.0.2 (2026-05-12)
     - Прозрачное меню теперь на ВСЕХ страницах (раньше только на
       главной). При скролле >80px — становится navy. Spacer убран.
@@ -224,6 +231,13 @@
     background: var(--nav-solid-bg);
     border-bottom-color: rgba(255,255,255,0.08);
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  /* Точечный тинт для отдельных страниц: 80% непрозрачное navy сверху.
+     При скролле .is-solid побеждает (через :not). Список страниц
+     ставится из JS по path. */
+  #yz-nav.is-tinted-80:not(.is-solid) {
+    background: rgba(30, 58, 92, 0.8);
+    border-bottom-color: rgba(255,255,255,0.06);
   }
   #yz-nav, #yz-nav *, #yz-nav *::before, #yz-nav *::after { box-sizing: border-box; }
   #yz-nav a, #yz-nav button {
@@ -689,10 +703,20 @@
   /* ─── Transparent navbar logic.
      На ВСЕХ страницах меню изначально прозрачное (поверх hero-фото
      с белым текстом). При скролле >80px — становится navy.
-     Подразумевается что у каждой страницы yacht.az есть тёмный hero
-     в верхней части — иначе белый текст не будет читабелен. */
+
+     Точечные исключения по path: страницы из TINT_80 стартуют не с
+     полной прозрачности, а с 80% непрозрачным navy (читаемее когда
+     hero недостаточно контрастный). При скролле всё равно становятся
+     полностью solid. */
+  var TINT_80 = [
+    'baku-club-regatta'    /* «Клубные регаты» */
+  ];
+
   var nav = document.getElementById('yz-nav');
   if (nav) {
+    var tintMatch = TINT_80.some(function (slug) { return path.indexOf(slug) !== -1; });
+    if (tintMatch) nav.classList.add('is-tinted-80');
+
     var onScroll = function () {
       if (window.scrollY > 80) {
         nav.classList.add('is-solid');
