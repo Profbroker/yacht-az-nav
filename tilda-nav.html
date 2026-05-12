@@ -54,8 +54,15 @@
         </ul>
       </li>
 
-      <li class="yz-nav-item" role="none">
-        <a class="yz-nav-link" href="#" data-yz-link="yachts" data-label="nav.yachts" role="menuitem"></a>
+      <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="yachts" role="menuitem">
+          <span data-label="nav.yachts"></span>
+          <span class="yz-nav-caret" aria-hidden="true"></span>
+        </a>
+        <ul class="yz-nav-dropdown" role="menu">
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="alora">Alora</a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="princess">Princess</a></li>
+        </ul>
       </li>
 
       <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
@@ -144,7 +151,14 @@
         </ul>
       </details>
 
-      <a class="yz-nav-mobile-link" href="#" data-yz-link="yachts" data-label="nav.yachts"></a>
+      <details>
+        <summary data-label="nav.yachts"></summary>
+        <ul>
+          <li><a href="#" data-yz-link="yachts" data-label="nav.allYachts"></a></li>
+          <li><a href="#" data-yz-link="alora">Alora</a></li>
+          <li><a href="#" data-yz-link="princess">Princess</a></li>
+        </ul>
+      </details>
 
       <details>
         <summary data-label="nav.world"></summary>
@@ -558,6 +572,7 @@
       'nav.blog':       'Новости',
       'nav.prices':     'Цены',
       'nav.yachts':     'Аренда',
+      'nav.allYachts':  'Все яхты',
       'nav.mk':         'Мастер-класс',
       'nav.regatta':    'Регата выходного дня',
       'nav.team':       'Тимбилдинг',
@@ -575,6 +590,7 @@
       'nav.blog':       'News',
       'nav.prices':     'Prices',
       'nav.yachts':     'Rental',
+      'nav.allYachts':  'All yachts',
       'nav.mk':         'Masterclass',
       'nav.regatta':    'Weekend regatta',
       'nav.team':       'Teambuilding',
@@ -592,6 +608,7 @@
       'nav.blog':       'Xəbərlər',
       'nav.prices':     'Qiymətlər',
       'nav.yachts':     'İcarə',
+      'nav.allYachts':  'Bütün yaxtalar',
       'nav.mk':         'Masterklas',
       'nav.regatta':    'Həftəsonu regatası',
       'nav.team':       'Timbildinq',
