@@ -1,9 +1,18 @@
 <!--
   tilda-nav.html — главное меню yacht.az
 
+  ВЕРСИЯ: 1.0.3 (2026-05-12)
+    - Точечная настройка прозрачности через data-yz-nav на <html>
+      или <body>:
+        * "auto" (default) — прозрачно → navy при скролле >80px
+        * "solid" — сразу navy + spacer 96px (страницы без hero)
+        * "transparent" — всегда прозрачно (full-screen hero, нет скролла)
+      В Tilda: Page Settings → More → HTML-код в HEAD страницы:
+        <script>document.documentElement.setAttribute('data-yz-nav','solid');</script>
+
   ВЕРСИЯ: 1.0.2 (2026-05-12)
     - Прозрачное меню теперь на ВСЕХ страницах (раньше только на
-      главной). При скролле >80px — становится navy. Spacer убран.
+      главной). При скролле >80px — становится navy.
     - Шрифты desktop +1pt: главное 14px, подменю 13px.
     - Бургер в мобилке прижат к правому краю (grid 1fr auto).
 
@@ -191,8 +200,11 @@
 
 </nav>
 
-<!-- Spacer удалён в 1.0.2 — меню теперь прозрачное на ВСЕХ страницах,
-     контент идёт прямо под него (как на главной до этого). -->
+<!-- Spacer: видим только когда data-yz-nav="solid" — на таких страницах
+     меню непрозрачное и контент не должен уезжать под него.
+     На "auto" и "transparent" страницах spacer скрыт — контент идёт
+     прямо под прозрачную шапку (hero перекрывает её визуально). -->
+<div id="yz-nav-spacer" style="height: 96px; display: none;"></div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
@@ -687,21 +699,36 @@
   }
 
   /* ─── Transparent navbar logic.
-     На ВСЕХ страницах меню изначально прозрачное (поверх hero-фото
-     с белым текстом). При скролле >80px — становится navy.
-     Подразумевается что у каждой страницы yacht.az есть тёмный hero
-     в верхней части — иначе белый текст не будет читабелен. */
+     Режим читается из data-yz-nav на <html> или <body>:
+       "auto"        — прозрачно → navy при скролле >80px (DEFAULT)
+       "solid"       — сразу navy + spacer 96px (страницы без hero)
+       "transparent" — всегда прозрачно (full-screen hero, нет скролла)
+     Установка из Tilda Page Settings → More → HTML-код в HEAD:
+       <script>document.documentElement.setAttribute('data-yz-nav','solid');</script> */
   var nav = document.getElementById('yz-nav');
   if (nav) {
-    var onScroll = function () {
-      if (window.scrollY > 80) {
-        nav.classList.add('is-solid');
-      } else {
-        nav.classList.remove('is-solid');
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    var mode = document.documentElement.getAttribute('data-yz-nav') ||
+               document.body.getAttribute('data-yz-nav') ||
+               'auto';
+    var spacer = document.getElementById('yz-nav-spacer');
+
+    if (mode === 'solid') {
+      nav.classList.add('is-solid');
+      if (spacer) spacer.style.display = 'block';
+    } else if (mode === 'transparent') {
+      /* без scroll listener — навсегда прозрачно */
+    } else {
+      /* auto: прозрачно сверху → navy при скролле */
+      var onScroll = function () {
+        if (window.scrollY > 80) {
+          nav.classList.add('is-solid');
+        } else {
+          nav.classList.remove('is-solid');
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   }
 })();
 </script>
