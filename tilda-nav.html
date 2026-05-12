@@ -48,11 +48,14 @@
         </button>
         <ul class="yz-nav-dropdown" role="menu">
           <li><a class="yz-nav-sublink" href="#" data-yz-link="prices"            data-label="nav.prices"></a></li>
-          <li><a class="yz-nav-sublink" href="#" data-yz-link="yachts"            data-label="nav.yachts"></a></li>
           <li><a class="yz-nav-sublink" href="#" data-yz-link="mk"                data-label="nav.mk"></a></li>
           <li><a class="yz-nav-sublink" href="#" data-yz-link="baku-club-regatta" data-label="nav.regatta"></a></li>
           <li><a class="yz-nav-sublink" href="#" data-yz-link="teambuilding-regatta" data-label="nav.team"></a></li>
         </ul>
+      </li>
+
+      <li class="yz-nav-item" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="yachts" data-label="nav.yachts" role="menuitem"></a>
       </li>
 
       <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
@@ -135,12 +138,13 @@
         <summary data-label="nav.baku"></summary>
         <ul>
           <li><a href="#" data-yz-link="prices"               data-label="nav.prices"></a></li>
-          <li><a href="#" data-yz-link="yachts"               data-label="nav.yachts"></a></li>
           <li><a href="#" data-yz-link="mk"                   data-label="nav.mk"></a></li>
           <li><a href="#" data-yz-link="baku-club-regatta"    data-label="nav.regatta"></a></li>
           <li><a href="#" data-yz-link="teambuilding-regatta" data-label="nav.team"></a></li>
         </ul>
       </details>
+
+      <a class="yz-nav-mobile-link" href="#" data-yz-link="yachts" data-label="nav.yachts"></a>
 
       <details>
         <summary data-label="nav.world"></summary>
@@ -197,6 +201,7 @@
     --nav-paper:      #FBFAF6;
     --nav-white:      #FFFFFF;
     --nav-accent:     #0E375E;
+    --nav-solid-bg:   #1E3A5C;  /* посветлее чем --nav-ink — для фона при scrolled state */
     --nav-h:          96px;
 
     position: fixed;
@@ -213,7 +218,7 @@
     color: rgba(255,255,255,0.92);
   }
   #yz-nav.is-solid {
-    background: var(--nav-ink);
+    background: var(--nav-solid-bg);
     border-bottom-color: rgba(255,255,255,0.08);
     box-shadow: 0 2px 12px rgba(0,0,0,0.18);
   }
@@ -552,7 +557,7 @@
       'nav.shop':       'Магазин',
       'nav.blog':       'Новости',
       'nav.prices':     'Цены',
-      'nav.yachts':     'Аренда яхты',
+      'nav.yachts':     'Аренда',
       'nav.mk':         'Мастер-класс',
       'nav.regatta':    'Регата выходного дня',
       'nav.team':       'Тимбилдинг',
@@ -569,7 +574,7 @@
       'nav.shop':       'Shop',
       'nav.blog':       'News',
       'nav.prices':     'Prices',
-      'nav.yachts':     'Yacht rental',
+      'nav.yachts':     'Rental',
       'nav.mk':         'Masterclass',
       'nav.regatta':    'Weekend regatta',
       'nav.team':       'Teambuilding',
@@ -586,7 +591,7 @@
       'nav.shop':       'Mağaza',
       'nav.blog':       'Xəbərlər',
       'nav.prices':     'Qiymətlər',
-      'nav.yachts':     'Yaxta icarəsi',
+      'nav.yachts':     'İcarə',
       'nav.mk':         'Masterklas',
       'nav.regatta':    'Həftəsonu regatası',
       'nav.team':       'Timbildinq',
