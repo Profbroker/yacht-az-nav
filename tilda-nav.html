@@ -1,0 +1,652 @@
+<!--
+  tilda-nav.html — главное меню yacht.az
+
+  ВЕРСИЯ: 1.0.0 (2026-05-12)
+
+  Архитектура:
+    Profbroker/yacht-az-nav (публичный git)  ← источник
+              ↓ jsDelivr CDN
+    fetch в tilda-nav-loader.html
+              ↓
+    innerHTML в #yz-nav-mount             ← рендер в Tilda Header
+              ↓
+    клиент видит меню
+
+  Размещение: НЕ вставляется в Tilda напрямую. Лежит в GitHub репо
+  Profbroker/yacht-az-nav. В Tilda Site Settings → Header HTML стоит
+  только loader (tilda-nav-loader.html).
+
+  Multilang: RU/EN/AZ автоматически по window.location.pathname.
+  AZ — главная без префикса (правило #5 hreflang_map.md), остальные
+  AZ-страницы с префиксом /az/.
+
+  TODO:
+    - LOGO_URL: подменить на реальный URL из tildacdn
+    - Instagram URL: проверить https://instagram.com/yacht.az
+    - Telegram URL: проверить https://t.me/yachtaz
+    - Slug-и услуг: согласованы с yacht-az/memory/url-slugs.md
+-->
+
+<nav id="yz-nav" role="navigation" aria-label="Главное меню">
+  <div class="yz-nav-inner">
+
+    <!-- Логотип ─────────────────────────────────────────── -->
+    <a class="yz-nav-logo" href="#" data-yz-home aria-label="yacht.az — главная">
+      <img src="LOGO_URL_HERE"
+           alt="yacht.az"
+           width="56" height="40"
+           loading="eager" />
+    </a>
+
+    <!-- Меню (desktop) ──────────────────────────────────── -->
+    <ul class="yz-nav-menu" role="menubar">
+
+      <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
+        <button class="yz-nav-link" aria-haspopup="true" aria-expanded="false" role="menuitem">
+          <span data-label="nav.baku"></span>
+          <span class="yz-nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul class="yz-nav-dropdown" role="menu">
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="prices"            data-label="nav.prices"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="yachts"            data-label="nav.yachts"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="mk"                data-label="nav.mk"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="baku-club-regatta" data-label="nav.regatta"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="teambuilding-regatta" data-label="nav.team"></a></li>
+        </ul>
+      </li>
+
+      <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
+        <button class="yz-nav-link" aria-haspopup="true" aria-expanded="false" role="menuitem">
+          <span data-label="nav.world"></span>
+          <span class="yz-nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul class="yz-nav-dropdown" role="menu">
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="regattas" data-label="nav.regattas"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="cruises"  data-label="nav.cruises"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="world"    data-label="nav.charter"></a></li>
+        </ul>
+      </li>
+
+      <li class="yz-nav-item" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="school" data-label="nav.school" role="menuitem"></a>
+      </li>
+
+      <li class="yz-nav-item" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="teambuilding-regatta" data-label="nav.business" role="menuitem"></a>
+      </li>
+
+      <li class="yz-nav-item" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="faq" data-label="nav.faq" role="menuitem"></a>
+      </li>
+
+      <li class="yz-nav-item" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="shop" data-label="nav.shop" role="menuitem"></a>
+      </li>
+
+      <li class="yz-nav-item" role="none">
+        <a class="yz-nav-link" href="#" data-yz-link="blog" data-label="nav.blog" role="menuitem"></a>
+      </li>
+
+    </ul>
+
+    <!-- Правый блок: соцсети + язык ─────────────────────── -->
+    <div class="yz-nav-right">
+      <a class="yz-nav-social" href="https://instagram.com/yacht.az"
+         target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a class="yz-nav-social" href="https://t.me/yachtaz"
+         target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <!-- Переключатель языка -->
+      <div class="yz-nav-lang">
+        <button class="yz-nav-lang-trigger" aria-haspopup="true" aria-expanded="false">
+          <span class="yz-nav-lang-current">RU</span>
+          <span class="yz-nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul class="yz-nav-lang-dropdown" role="menu">
+          <li><a href="#" data-yz-lang="ru" role="menuitem">Русский</a></li>
+          <li><a href="#" data-yz-lang="en" role="menuitem">English</a></li>
+          <li><a href="#" data-yz-lang="az" role="menuitem">Azərbaycan</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Бургер для мобилки ──────────────────────────────── -->
+    <button class="yz-nav-burger" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+
+  <!-- Мобильное полноэкранное меню (overlay) ─────────────── -->
+  <div class="yz-nav-mobile" aria-hidden="true">
+    <div class="yz-nav-mobile-inner">
+
+      <details>
+        <summary data-label="nav.baku"></summary>
+        <ul>
+          <li><a href="#" data-yz-link="prices"               data-label="nav.prices"></a></li>
+          <li><a href="#" data-yz-link="yachts"               data-label="nav.yachts"></a></li>
+          <li><a href="#" data-yz-link="mk"                   data-label="nav.mk"></a></li>
+          <li><a href="#" data-yz-link="baku-club-regatta"    data-label="nav.regatta"></a></li>
+          <li><a href="#" data-yz-link="teambuilding-regatta" data-label="nav.team"></a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary data-label="nav.world"></summary>
+        <ul>
+          <li><a href="#" data-yz-link="regattas" data-label="nav.regattas"></a></li>
+          <li><a href="#" data-yz-link="cruises"  data-label="nav.cruises"></a></li>
+          <li><a href="#" data-yz-link="world"    data-label="nav.charter"></a></li>
+        </ul>
+      </details>
+
+      <a class="yz-nav-mobile-link" href="#" data-yz-link="school"               data-label="nav.school"></a>
+      <a class="yz-nav-mobile-link" href="#" data-yz-link="teambuilding-regatta" data-label="nav.business"></a>
+      <a class="yz-nav-mobile-link" href="#" data-yz-link="faq"                  data-label="nav.faq"></a>
+      <a class="yz-nav-mobile-link" href="#" data-yz-link="shop"                 data-label="nav.shop"></a>
+      <a class="yz-nav-mobile-link" href="#" data-yz-link="blog"                 data-label="nav.blog"></a>
+
+      <div class="yz-nav-mobile-lang">
+        <a href="#" data-yz-lang="ru">RU</a>
+        <a href="#" data-yz-lang="en">EN</a>
+        <a href="#" data-yz-lang="az">AZ</a>
+      </div>
+
+      <div class="yz-nav-mobile-social">
+        <a href="https://instagram.com/yacht.az" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="https://t.me/yachtaz" target="_blank" rel="noopener" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</nav>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+  #yz-nav {
+    --nav-ink:        #0E1726;
+    --nav-ink-soft:   #3A4456;
+    --nav-rule:       #E8E5DD;
+    --nav-paper:      #FBFAF6;
+    --nav-white:      #FFFFFF;
+    --nav-accent:     #0E375E;
+    --nav-h:          72px;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--nav-white);
+    border-bottom: 1px solid var(--nav-rule);
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--nav-ink);
+  }
+  #yz-nav, #yz-nav *, #yz-nav *::before, #yz-nav *::after { box-sizing: border-box; }
+  #yz-nav a, #yz-nav button {
+    color: inherit;
+    text-decoration: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+  }
+  #yz-nav ul { list-style: none; margin: 0; padding: 0; }
+
+  /* ── Inner container ─────────────────────────────────── */
+  .yz-nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: var(--nav-h);
+    padding: 0 clamp(16px, 3vw, 32px);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* ── Logo ────────────────────────────────────────────── */
+  .yz-nav-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .yz-nav-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  /* ── Desktop menu ────────────────────────────────────── */
+  .yz-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 24px);
+    flex: 1;
+    justify-content: center;
+  }
+  .yz-nav-item { position: relative; }
+  #yz-nav .yz-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--nav-ink);
+    white-space: nowrap;
+    transition: color 0.18s;
+  }
+  #yz-nav .yz-nav-link:hover { color: var(--nav-accent); }
+  .yz-nav-caret {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.2s;
+  }
+
+  /* ── Dropdown ────────────────────────────────────────── */
+  .yz-nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    padding: 8px 0;
+    background: var(--nav-white);
+    border: 1px solid var(--nav-rule);
+    box-shadow: 0 8px 24px rgba(14,23,38,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  }
+  .yz-nav-item--has-dropdown:hover > .yz-nav-dropdown,
+  .yz-nav-item--has-dropdown:focus-within > .yz-nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .yz-nav-item--has-dropdown:hover .yz-nav-caret,
+  .yz-nav-item--has-dropdown:focus-within .yz-nav-caret {
+    transform: rotate(-135deg) translateY(-2px);
+  }
+  #yz-nav .yz-nav-sublink {
+    display: block;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--nav-ink-soft);
+    transition: background 0.15s, color 0.15s;
+  }
+  #yz-nav .yz-nav-sublink:hover {
+    background: var(--nav-paper);
+    color: var(--nav-ink);
+  }
+
+  /* ── Right block: socials + lang ──────────────────────── */
+  .yz-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  #yz-nav .yz-nav-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--nav-ink-soft);
+    transition: color 0.18s, background 0.18s;
+  }
+  #yz-nav .yz-nav-social:hover {
+    color: var(--nav-accent);
+    background: var(--nav-paper);
+  }
+
+  /* Language switcher */
+  .yz-nav-lang { position: relative; }
+  #yz-nav .yz-nav-lang-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: var(--nav-ink);
+  }
+  .yz-nav-lang-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 140px;
+    padding: 8px 0;
+    background: var(--nav-white);
+    border: 1px solid var(--nav-rule);
+    box-shadow: 0 8px 24px rgba(14,23,38,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  }
+  .yz-nav-lang:hover .yz-nav-lang-dropdown,
+  .yz-nav-lang:focus-within .yz-nav-lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  #yz-nav .yz-nav-lang-dropdown a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--nav-ink-soft);
+    transition: background 0.15s, color 0.15s;
+  }
+  #yz-nav .yz-nav-lang-dropdown a:hover {
+    background: var(--nav-paper);
+    color: var(--nav-ink);
+  }
+
+  /* ── Burger (mobile) ──────────────────────────────────── */
+  .yz-nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin-left: auto;
+  }
+  .yz-nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--nav-ink);
+    margin: 0 auto;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .yz-nav-burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .yz-nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .yz-nav-burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Mobile overlay menu ─────────────────────────────── */
+  .yz-nav-mobile {
+    position: fixed;
+    inset: var(--nav-h) 0 0 0;
+    background: var(--nav-white);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 999;
+  }
+  .yz-nav-mobile.is-open {
+    transform: translateX(0);
+  }
+  .yz-nav-mobile-inner {
+    padding: 24px clamp(16px, 5vw, 32px) 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .yz-nav-mobile details {
+    border-bottom: 1px solid var(--nav-rule);
+  }
+  .yz-nav-mobile summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--nav-ink);
+    position: relative;
+    padding-right: 36px;
+  }
+  .yz-nav-mobile summary::-webkit-details-marker { display: none; }
+  .yz-nav-mobile summary::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--nav-ink-soft);
+    border-bottom: 2px solid var(--nav-ink-soft);
+    transform: translateY(-75%) rotate(45deg);
+    transition: transform 0.2s;
+  }
+  .yz-nav-mobile details[open] summary::after {
+    transform: translateY(-25%) rotate(-135deg);
+  }
+  .yz-nav-mobile details ul {
+    padding-bottom: 12px;
+  }
+  #yz-nav .yz-nav-mobile details a {
+    display: block;
+    padding: 10px 0 10px 16px;
+    font-size: 15px;
+    color: var(--nav-ink-soft);
+  }
+  #yz-nav .yz-nav-mobile-link {
+    display: block;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--nav-rule);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--nav-ink);
+  }
+  .yz-nav-mobile-lang {
+    display: flex;
+    gap: 16px;
+    padding: 24px 0 12px;
+  }
+  #yz-nav .yz-nav-mobile-lang a {
+    padding: 8px 14px;
+    border: 1px solid var(--nav-rule);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--nav-ink-soft);
+  }
+  #yz-nav .yz-nav-mobile-lang a.is-active {
+    background: var(--nav-ink);
+    color: var(--nav-white);
+    border-color: var(--nav-ink);
+  }
+  .yz-nav-mobile-social {
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+  }
+  #yz-nav .yz-nav-mobile-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--nav-rule);
+    color: var(--nav-ink-soft);
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .yz-nav-menu,
+    .yz-nav-right { display: none; }
+    .yz-nav-burger { display: flex; }
+  }
+
+  /* prevent body scroll when mobile menu open */
+  body.yz-nav-locked { overflow: hidden; }
+</style>
+
+<script>
+(function () {
+  /* ─── Lang detect.
+     На /en/... → en
+     На /az/... → az
+     иначе → ru (default)
+     Особый случай: главная yacht.az/ — без префикса = AZ (правило #5
+     hreflang_map.md). Для главных страниц RU/EN — пути /ru/ и /en/. */
+  var path = window.location.pathname;
+  var lang;
+  if (/^\/en(\/|$)/.test(path))      lang = 'en';
+  else if (/^\/az(\/|$)/.test(path)) lang = 'az';
+  else if (/^\/ru(\/|$)/.test(path)) lang = 'ru';
+  else lang = 'az'; /* корень yacht.az/ → AZ */
+
+  /* ─── Translations ──────────────────────────────── */
+  var T = {
+    ru: {
+      'nav.baku':       'Яхтинг в Баку',
+      'nav.world':      'Путешествия',
+      'nav.school':     'Школа',
+      'nav.business':   'Бизнесу',
+      'nav.faq':        'FAQ',
+      'nav.shop':       'Магазин',
+      'nav.blog':       'Новости',
+      'nav.prices':     'Цены',
+      'nav.yachts':     'Аренда яхты',
+      'nav.mk':         'Мастер-класс',
+      'nav.regatta':    'Регата выходного дня',
+      'nav.team':       'Тимбилдинг',
+      'nav.regattas':   'Международные регаты',
+      'nav.cruises':    'Дальние круизы',
+      'nav.charter':    'Индивидуальный чартер'
+    },
+    en: {
+      'nav.baku':       'Sailing in Baku',
+      'nav.world':      'Travels',
+      'nav.school':     'School',
+      'nav.business':   'For business',
+      'nav.faq':        'FAQ',
+      'nav.shop':       'Shop',
+      'nav.blog':       'News',
+      'nav.prices':     'Prices',
+      'nav.yachts':     'Yacht rental',
+      'nav.mk':         'Masterclass',
+      'nav.regatta':    'Weekend regatta',
+      'nav.team':       'Teambuilding',
+      'nav.regattas':   'International regattas',
+      'nav.cruises':    'Long cruises',
+      'nav.charter':    'Private charter'
+    },
+    az: {
+      'nav.baku':       'Bakıda yelkənçilik',
+      'nav.world':      'Səyahətlər',
+      'nav.school':     'Məktəb',
+      'nav.business':   'Biznes üçün',
+      'nav.faq':        'FAQ',
+      'nav.shop':       'Mağaza',
+      'nav.blog':       'Xəbərlər',
+      'nav.prices':     'Qiymətlər',
+      'nav.yachts':     'Yaxta icarəsi',
+      'nav.mk':         'Masterklas',
+      'nav.regatta':    'Həftəsonu regatası',
+      'nav.team':       'Timbildinq',
+      'nav.regattas':   'Beynəlxalq regatalar',
+      'nav.cruises':    'Uzaq kruizlər',
+      'nav.charter':    'Fərdi çarter'
+    }
+  };
+  var t = T[lang] || T.ru;
+
+  /* ─── Apply translations ───────────────────────── */
+  document.querySelectorAll('#yz-nav [data-label]').forEach(function (el) {
+    var key = el.dataset.label;
+    if (t[key] != null) el.textContent = t[key];
+  });
+
+  /* ─── Build href for each slug. AZ — с префиксом /az/ для slug-страниц.
+     Главная: yacht.az/ для AZ, /ru/ и /en/ для остальных. */
+  function buildHref(slug) {
+    if (!slug) return '#';
+    return '/' + lang + '/' + slug;
+  }
+  function buildHomeHref() {
+    if (lang === 'az') return '/';
+    return '/' + lang + '/';
+  }
+
+  /* ─── Apply hrefs ──────────────────────────────── */
+  document.querySelectorAll('#yz-nav [data-yz-link]').forEach(function (el) {
+    el.setAttribute('href', buildHref(el.dataset.yzLink));
+  });
+  document.querySelectorAll('#yz-nav [data-yz-home]').forEach(function (el) {
+    el.setAttribute('href', buildHomeHref());
+  });
+
+  /* ─── Language switcher ───────────────────────── */
+  var langLabels = { ru: 'RU', en: 'EN', az: 'AZ' };
+  var currentLangEl = document.querySelector('.yz-nav-lang-current');
+  if (currentLangEl) currentLangEl.textContent = langLabels[lang];
+
+  /* Подменяем href language switcher: каждая ссылка ведёт на ту же
+     страницу в другом языке. Для главной — особый case (AZ без префикса). */
+  function langSwitchHref(targetLang) {
+    var p = path;
+    /* Убрать текущий префикс */
+    p = p.replace(/^\/(ru|en|az)(\/|$)/, '/');
+    if (p === '/' || p === '') p = '/';
+    /* Если current path был корнем сайта = AZ-главная */
+    if (p === '/' && (lang === 'az' || (lang === 'ru' && path === '/ru/') || (lang === 'en' && path === '/en/'))) {
+      return targetLang === 'az' ? '/' : '/' + targetLang + '/';
+    }
+    return targetLang === 'az' ? '/az' + p : '/' + targetLang + p;
+  }
+  document.querySelectorAll('#yz-nav [data-yz-lang]').forEach(function (el) {
+    var target = el.dataset.yzLang;
+    el.setAttribute('href', langSwitchHref(target));
+    if (target === lang) el.classList.add('is-active');
+  });
+
+  /* ─── Burger menu toggle ───────────────────────── */
+  var burger = document.querySelector('.yz-nav-burger');
+  var mobile = document.querySelector('.yz-nav-mobile');
+  if (burger && mobile) {
+    burger.addEventListener('click', function () {
+      var open = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', open ? 'false' : 'true');
+      mobile.classList.toggle('is-open');
+      mobile.setAttribute('aria-hidden', open ? 'true' : 'false');
+      document.body.classList.toggle('yz-nav-locked', !open);
+    });
+    /* Закрытие при клике по ссылке внутри */
+    mobile.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        burger.setAttribute('aria-expanded', 'false');
+        mobile.classList.remove('is-open');
+        mobile.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('yz-nav-locked');
+      }
+    });
+  }
+})();
+</script>
