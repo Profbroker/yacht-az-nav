@@ -185,7 +185,7 @@
 
 <!-- Spacer для не-главных страниц: компенсирует fixed-навбар.
      На главных он скрыт (меню прозрачное, контент идёт прямо под ним). -->
-<div id="yz-nav-spacer" style="height: 84px; display: none;"></div>
+<div id="yz-nav-spacer" style="height: 96px; display: none;"></div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
@@ -197,7 +197,7 @@
     --nav-paper:      #FBFAF6;
     --nav-white:      #FFFFFF;
     --nav-accent:     #0E375E;
-    --nav-h:          84px;
+    --nav-h:          96px;
 
     position: fixed;
     top: 0;
@@ -246,18 +246,22 @@
     flex-shrink: 0;
   }
   .yz-nav-logo img {
-    height: 56px;
+    height: 72px;
     width: auto;
     display: block;
   }
 
   /* ── Desktop menu ────────────────────────────────────── */
+  /* justify-content: flex-start — пункты сразу после логотипа,
+     не центрируются по контейнеру. right-блок прижимается к правому
+     краю через margin-left: auto. */
   .yz-nav-menu {
     display: flex;
     align-items: center;
     gap: clamp(8px, 1.5vw, 24px);
     flex: 1;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 32px;
   }
   .yz-nav-item { position: relative; }
   #yz-nav .yz-nav-link {
