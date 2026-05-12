@@ -1,7 +1,11 @@
 <!--
   tilda-nav.html — главное меню yacht.az
 
-  ВЕРСИЯ: 1.0.0 (2026-05-12)
+  ВЕРСИЯ: 1.0.1 (2026-05-12)
+    - «Аренда яхт» как отдельный пункт меню убрана; снова внутри
+      «Яхтинг в Баку» (цены, аренда яхт, мастер-класс, клубные регаты)
+    - «Регата выходного дня» переименована в «Клубные регаты»
+    - «Тимбилдинг» из подменю убран — он живёт в пункте «Бизнесу»
 
   Архитектура:
     Profbroker/yacht-az-nav (публичный git)  ← источник
@@ -42,26 +46,15 @@
     <ul class="yz-nav-menu" role="menubar">
 
       <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
-        <a class="yz-nav-link" href="#" data-yz-link="yachts" role="menuitem">
-          <span data-label="nav.yachts"></span>
-          <span class="yz-nav-caret" aria-hidden="true"></span>
-        </a>
-        <ul class="yz-nav-dropdown" role="menu">
-          <li><a class="yz-nav-sublink" href="#" data-yz-link="prices" data-label="nav.prices"></a></li>
-          <li><a class="yz-nav-sublink" href="#" data-yz-link="alora">Alora</a></li>
-          <li><a class="yz-nav-sublink" href="#" data-yz-link="caspian">Caspian</a></li>
-        </ul>
-      </li>
-
-      <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
         <button class="yz-nav-link" aria-haspopup="true" aria-expanded="false" role="menuitem">
           <span data-label="nav.baku"></span>
           <span class="yz-nav-caret" aria-hidden="true"></span>
         </button>
         <ul class="yz-nav-dropdown" role="menu">
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="prices"            data-label="nav.prices"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="yachts"            data-label="nav.yachts"></a></li>
           <li><a class="yz-nav-sublink" href="#" data-yz-link="mk"                data-label="nav.mk"></a></li>
           <li><a class="yz-nav-sublink" href="#" data-yz-link="baku-club-regatta" data-label="nav.regatta"></a></li>
-          <li><a class="yz-nav-sublink" href="#" data-yz-link="teambuilding-regatta" data-label="nav.team"></a></li>
         </ul>
       </li>
 
@@ -142,21 +135,12 @@
     <div class="yz-nav-mobile-inner">
 
       <details>
-        <summary data-label="nav.yachts"></summary>
-        <ul>
-          <li><a href="#" data-yz-link="yachts" data-label="nav.allYachts"></a></li>
-          <li><a href="#" data-yz-link="prices" data-label="nav.prices"></a></li>
-          <li><a href="#" data-yz-link="alora">Alora</a></li>
-          <li><a href="#" data-yz-link="caspian">Caspian</a></li>
-        </ul>
-      </details>
-
-      <details>
         <summary data-label="nav.baku"></summary>
         <ul>
-          <li><a href="#" data-yz-link="mk"                   data-label="nav.mk"></a></li>
-          <li><a href="#" data-yz-link="baku-club-regatta"    data-label="nav.regatta"></a></li>
-          <li><a href="#" data-yz-link="teambuilding-regatta" data-label="nav.team"></a></li>
+          <li><a href="#" data-yz-link="prices"            data-label="nav.prices"></a></li>
+          <li><a href="#" data-yz-link="yachts"            data-label="nav.yachts"></a></li>
+          <li><a href="#" data-yz-link="mk"                data-label="nav.mk"></a></li>
+          <li><a href="#" data-yz-link="baku-club-regatta" data-label="nav.regatta"></a></li>
         </ul>
       </details>
 
@@ -577,7 +561,7 @@
       'nav.yachts':     'Аренда яхт',
       'nav.allYachts':  'Все яхты',
       'nav.mk':         'Мастер-класс',
-      'nav.regatta':    'Регата выходного дня',
+      'nav.regatta':    'Клубные регаты',
       'nav.team':       'Тимбилдинг',
       'nav.regattas':   'Международные регаты',
       'nav.cruises':    'Дальние круизы',
@@ -595,7 +579,7 @@
       'nav.yachts':     'Yacht rental',
       'nav.allYachts':  'All yachts',
       'nav.mk':         'Masterclass',
-      'nav.regatta':    'Weekend regatta',
+      'nav.regatta':    'Club regattas',
       'nav.team':       'Teambuilding',
       'nav.regattas':   'International regattas',
       'nav.cruises':    'Long cruises',
@@ -613,7 +597,7 @@
       'nav.yachts':     'Yaxta icarəsi',
       'nav.allYachts':  'Bütün yaxtalar',
       'nav.mk':         'Masterklas',
-      'nav.regatta':    'Həftəsonu regatası',
+      'nav.regatta':    'Klub regataları',
       'nav.team':       'Timbildinq',
       'nav.regattas':   'Beynəlxalq regatalar',
       'nav.cruises':    'Uzaq kruizlər',
