@@ -244,6 +244,9 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    /* margin-left сдвигает лого от левого края экрана вправо,
+       ближе к меню. clamp() — адаптивно на разной ширине окна. */
+    margin-left: clamp(24px, 8vw, 120px);
   }
   .yz-nav-logo img {
     height: 72px;
@@ -252,16 +255,12 @@
   }
 
   /* ── Desktop menu ────────────────────────────────────── */
-  /* justify-content: flex-start — пункты сразу после логотипа,
-     не центрируются по контейнеру. right-блок прижимается к правому
-     краю через margin-left: auto. */
   .yz-nav-menu {
     display: flex;
     align-items: center;
     gap: clamp(8px, 1.5vw, 24px);
     flex: 1;
-    justify-content: flex-start;
-    margin-left: 32px;
+    justify-content: center;
   }
   .yz-nav-item { position: relative; }
   #yz-nav .yz-nav-link {
