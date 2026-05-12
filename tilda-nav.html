@@ -523,9 +523,13 @@
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 960px) {
+    /* На мобилке grid 1fr auto 1fr оставлял бургер посередине
+       (он попадал в неиспользуемую колонку из-за hidden меню/right).
+       Переключаем на 1fr auto: лого слева, бургер прижат к правому краю. */
+    .yz-nav-inner { grid-template-columns: 1fr auto; }
     .yz-nav-menu,
     .yz-nav-right { display: none; }
-    .yz-nav-burger { display: flex; }
+    .yz-nav-burger { display: flex; justify-self: end; }
   }
 
   /* prevent body scroll when mobile menu open */
