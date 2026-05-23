@@ -96,8 +96,15 @@
         <a class="yz-nav-link" href="#" data-yz-link="school" data-label="nav.school" role="menuitem"></a>
       </li>
 
-      <li class="yz-nav-item" role="none">
-        <a class="yz-nav-link" href="#" data-yz-link="corp/teambuilding-regatta" data-label="nav.business" role="menuitem"></a>
+      <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
+        <button class="yz-nav-link" aria-haspopup="true" aria-expanded="false" role="menuitem">
+          <span data-label="nav.business"></span>
+          <span class="yz-nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul class="yz-nav-dropdown" role="menu">
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="corp/teambuilding-regatta" data-label="nav.bizTeambuilding"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="corp/regatta-corporate"    data-label="nav.bizRegatta"></a></li>
+        </ul>
       </li>
 
       <li class="yz-nav-item" role="none">
@@ -176,7 +183,15 @@
       </details>
 
       <a class="yz-nav-mobile-link" href="#" data-yz-link="school"               data-label="nav.school"></a>
-      <a class="yz-nav-mobile-link" href="#" data-yz-link="corp/teambuilding-regatta" data-label="nav.business"></a>
+
+      <details>
+        <summary data-label="nav.business"></summary>
+        <ul>
+          <li><a href="#" data-yz-link="corp/teambuilding-regatta" data-label="nav.bizTeambuilding"></a></li>
+          <li><a href="#" data-yz-link="corp/regatta-corporate"    data-label="nav.bizRegatta"></a></li>
+        </ul>
+      </details>
+
       <a class="yz-nav-mobile-link" href="#" data-yz-link="faq"                  data-label="nav.faq"></a>
       <a class="yz-nav-mobile-link" href="#" data-yz-link="shop"                 data-label="nav.shop"></a>
       <a class="yz-nav-mobile-link" href="#" data-yz-link="blog"                 data-label="nav.blog"></a>
@@ -587,6 +602,8 @@
       'nav.world':      'Другие моря',
       'nav.school':     'Школа',
       'nav.business':   'Бизнесу',
+      'nav.bizTeambuilding': 'Тимбилдинг',
+      'nav.bizRegatta':      'Регата',
       'nav.faq':        'FAQ',
       'nav.shop':       'Магазин',
       'nav.blog':       'Новости',
@@ -605,6 +622,8 @@
       'nav.world':      'Other seas',
       'nav.school':     'School',
       'nav.business':   'For business',
+      'nav.bizTeambuilding': 'Teambuilding',
+      'nav.bizRegatta':      'Regatta',
       'nav.faq':        'FAQ',
       'nav.shop':       'Shop',
       'nav.blog':       'News',
@@ -623,6 +642,8 @@
       'nav.world':      'Başqa dənizlər',
       'nav.school':     'Məktəb',
       'nav.business':   'Biznes üçün',
+      'nav.bizTeambuilding': 'Timbildinq',
+      'nav.bizRegatta':      'Reqata',
       'nav.faq':        'FAQ',
       'nav.shop':       'Mağaza',
       'nav.blog':       'Xəbərlər',
