@@ -152,6 +152,15 @@
       </div>
     </div>
 
+    <!-- Переключатель языка для мобилки — виден в шапке без открытия бургера.
+         Ссылки и класс is-active навешиваются тем же JS что и десктоп
+         (селектор #yz-nav [data-yz-lang]), отдельная логика не нужна. -->
+    <div class="yz-nav-mlang" role="navigation" aria-label="Язык">
+      <a href="#" data-yz-lang="ru">RU</a>
+      <a href="#" data-yz-lang="en">EN</a>
+      <a href="#" data-yz-lang="az">AZ</a>
+    </div>
+
     <!-- Бургер для мобилки ──────────────────────────────── -->
     <button class="yz-nav-burger" aria-label="Открыть меню" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -441,6 +450,29 @@
     color: var(--nav-ink);
   }
 
+  /* ── Mobile inline language switcher ─────────────────────
+     Виден только на мобилке (в @media снизу). На десктопе скрыт —
+     там работает .yz-nav-lang dropdown. */
+  .yz-nav-mlang {
+    display: none;
+    align-items: center;
+    gap: 2px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4); /* читаемость поверх hero-фото */
+  }
+  #yz-nav .yz-nav-mlang a {
+    padding: 6px 8px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.18s;
+  }
+  #yz-nav .yz-nav-mlang a.is-active {
+    color: #fff;
+    font-weight: 700;
+  }
+
   /* ── Burger (mobile) ──────────────────────────────────── */
   .yz-nav-burger {
     display: none;
@@ -567,13 +599,15 @@
 
   /* ── Responsive ──────────────────────────────────────── */
   @media (max-width: 960px) {
-    /* На мобилке grid 1fr auto 1fr оставлял бургер посередине
-       (он попадал в неиспользуемую колонку из-за hidden меню/right).
-       Переключаем на 1fr auto: лого слева, бургер прижат к правому краю. */
-    .yz-nav-inner { grid-template-columns: 1fr auto; }
+    /* На мобилке desktop-меню и right-блок скрыты. В шапке остаются:
+       лого (слева) · переключатель языка · бургер (справа).
+       Grid 1fr auto auto: лого тянется (1fr) и отжимает язык+бургер
+       к правому краю, между ними небольшой gap. */
+    .yz-nav-inner { grid-template-columns: 1fr auto auto; gap: 10px; }
     .yz-nav-menu,
     .yz-nav-right { display: none; }
-    .yz-nav-burger { display: flex; justify-self: end; }
+    .yz-nav-mlang { display: inline-flex; }
+    .yz-nav-burger { display: flex; justify-self: end; margin-left: 0; }
   }
 
   /* prevent body scroll when mobile menu open */
