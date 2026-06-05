@@ -767,6 +767,12 @@
     if (p === '/' && (lang === 'az' || (lang === 'ru' && path === '/ru/') || (lang === 'en' && path === '/en/'))) {
       return targetLang === 'az' ? '/' : '/' + targetLang + '/';
     }
+    /* Корневые страницы БЕЗ языкового префикса (/news, /seychelles, /turkey, /tmbld1…)
+       не имеют языковых версий — переключатель ведёт на главную нужного языка,
+       а не на несуществующую /{lang}/<page> (которая отдаёт 404). */
+    if (!/^\/(ru|en|az)(\/|$)/.test(path)) {
+      return targetLang === 'az' ? '/' : '/' + targetLang + '/';
+    }
     return targetLang === 'az' ? '/az' + p : '/' + targetLang + p;
   }
   document.querySelectorAll('#yz-nav [data-yz-lang]').forEach(function (el) {
