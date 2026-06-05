@@ -115,8 +115,15 @@
         <a class="yz-nav-link" href="#" data-yz-link="shop" data-label="nav.shop" role="menuitem"></a>
       </li>
 
-      <li class="yz-nav-item" role="none">
-        <a class="yz-nav-link" href="#" data-yz-link="blog" data-label="nav.blog" role="menuitem"></a>
+      <li class="yz-nav-item yz-nav-item--has-dropdown" role="none">
+        <button class="yz-nav-link" aria-haspopup="true" aria-expanded="false" role="menuitem">
+          <span data-label="nav.blog"></span>
+          <span class="yz-nav-caret" aria-hidden="true"></span>
+        </button>
+        <ul class="yz-nav-dropdown" role="menu">
+          <li><a class="yz-nav-sublink" href="https://bakuyachts.az/ru/" target="_blank" rel="noopener" data-yz-bakublog data-label="nav.blogBlog"></a></li>
+          <li><a class="yz-nav-sublink" href="#" data-yz-link="news" data-label="nav.blogNews"></a></li>
+        </ul>
       </li>
 
     </ul>
@@ -203,7 +210,15 @@
 
       <a class="yz-nav-mobile-link" href="#" data-yz-link="faq"                  data-label="nav.faq"></a>
       <a class="yz-nav-mobile-link" href="#" data-yz-link="shop"                 data-label="nav.shop"></a>
-      <a class="yz-nav-mobile-link" href="#" data-yz-link="blog"                 data-label="nav.blog"></a>
+
+      <details>
+        <summary data-label="nav.blog"></summary>
+        <ul>
+          <li><a href="https://bakuyachts.az/ru/" target="_blank" rel="noopener" data-yz-bakublog data-label="nav.blogBlog"></a></li>
+          <li><a href="#" data-yz-link="news" data-label="nav.blogNews"></a></li>
+        </ul>
+      </details>
+
 
       <div class="yz-nav-mobile-lang">
         <a href="#" data-yz-lang="ru">RU</a>
@@ -640,7 +655,9 @@
       'nav.bizRegatta':      'Регата',
       'nav.faq':        'FAQ',
       'nav.shop':       'Магазин',
-      'nav.blog':       'Новости',
+      'nav.blog':       'Блог',
+      'nav.blogBlog':   'Блог',
+      'nav.blogNews':   'Новости',
       'nav.prices':     'Цены',
       'nav.yachts':     'Аренда яхт',
       'nav.allYachts':  'Все яхты',
@@ -660,7 +677,9 @@
       'nav.bizRegatta':      'Regatta',
       'nav.faq':        'FAQ',
       'nav.shop':       'Shop',
-      'nav.blog':       'News',
+      'nav.blog':       'Blog',
+      'nav.blogBlog':   'Blog',
+      'nav.blogNews':   'News',
       'nav.prices':     'Prices',
       'nav.yachts':     'Yacht rental',
       'nav.allYachts':  'All yachts',
@@ -680,7 +699,9 @@
       'nav.bizRegatta':      'Reqata',
       'nav.faq':        'FAQ',
       'nav.shop':       'Mağaza',
-      'nav.blog':       'Xəbərlər',
+      'nav.blog':       'Bloq',
+      'nav.blogBlog':   'Bloq',
+      'nav.blogNews':   'Xəbərlər',
       'nav.prices':     'Qiymətlər',
       'nav.yachts':     'Yaxta icarəsi',
       'nav.allYachts':  'Bütün yaxtalar',
@@ -717,6 +738,17 @@
   });
   document.querySelectorAll('#yz-nav [data-yz-home]').forEach(function (el) {
     el.setAttribute('href', buildHomeHref());
+  });
+
+  /* ─── Внешняя ссылка «Блог» → bakuyachts.az по языку.
+     dofollow (без rel=nofollow), target=_blank rel=noopener. */
+  var bakuBlog = {
+    ru: 'https://bakuyachts.az/ru/',
+    en: 'https://bakuyachts.az/en/',
+    az: 'https://bakuyachts.az/'
+  };
+  document.querySelectorAll('#yz-nav [data-yz-bakublog]').forEach(function (el) {
+    el.setAttribute('href', bakuBlog[lang] || bakuBlog.ru);
   });
 
   /* ─── Language switcher ───────────────────────── */
